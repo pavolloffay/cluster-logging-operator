@@ -1,0 +1,251 @@
+2023-09-25T21:27:40.701764Z  INFO vector::app: Internal log rate limit configured. internal_log_rate_secs=0
+2023-09-25T21:27:40.701958Z  INFO vector::app: Log level is enabled. level="debug"
+2023-09-25T21:27:40.702043Z  INFO vector::app: Loading configs. paths=["/etc/vector/vector.toml"]
+2023-09-25T21:27:40.703716Z DEBUG vector::config::loading: No secret placeholder found, skipping secret resolution.
+2023-09-25T21:27:40.863353Z  WARN vector::config::loading: Transform "route_container_logs._unmatched" has no consumers
+2023-09-25T21:27:40.863416Z DEBUG vector::topology::builder: Building new source. component=internal_metrics
+2023-09-25T21:27:40.863889Z DEBUG vector::topology::builder: Building new source. component=raw_container_logs
+2023-09-25T21:27:40.864243Z  INFO source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}: vector::sources::kubernetes_logs: Obtained Kubernetes Node name to collect logs for (self). self_node_name="ip-10-0-1-4.ec2.internal"
+2023-09-25T21:27:40.896822Z  INFO source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}: vector::sources::kubernetes_logs: Excluding matching files. exclude_paths=["/var/log/pods/test-qudehrhn_logfilesmetricexporter-*/*/*.log", "/var/log/pods/test-qudehrhn_elasticsearch-*/*/*.log", "/var/log/pods/test-qudehrhn_*/loki*/*.log", "/var/log/pods/test-qudehrhn_kibana-*/*/*.log", "/var/log/pods/test-qudehrhn_*/gateway/*.log", "/var/log/pods/test-qudehrhn_*/opa/*.log", "/var/log/pods/*/*/*.gz", "/var/log/pods/*/*/*.tmp"]
+2023-09-25T21:27:40.896873Z DEBUG vector::topology::builder: Building new transform. component=add_nodename_to_metric
+2023-09-25T21:27:40.897169Z DEBUG vector::topology::builder: Building new transform. component=application
+2023-09-25T21:27:40.906295Z DEBUG vector::topology::builder: Building new transform. component=container_logs
+2023-09-25T21:27:40.928586Z DEBUG vector::topology::builder: Building new transform. component=forward_pipeline_user_defined
+2023-09-25T21:27:40.936426Z DEBUG vector::topology::builder: Building new transform. component=http_dedot
+2023-09-25T21:27:40.962124Z DEBUG vector::topology::builder: Building new transform. component=http_normalize_http
+2023-09-25T21:27:40.982162Z DEBUG vector::topology::builder: Building new transform. component=http_otel
+2023-09-25T21:27:41.015483Z DEBUG vector::topology::builder: Building new transform. component=route_container_logs
+2023-09-25T21:27:41.023070Z DEBUG vector::topology::builder: Building new sink. component=http
+2023-09-25T21:27:41.051736Z DEBUG vector_core::tls::settings: Fetching system root certs.
+2023-09-25T21:27:41.079889Z DEBUG vector_core::tls::settings: Fetching system root certs.
+2023-09-25T21:27:41.109546Z DEBUG vector::topology::builder: Building new sink. component=prometheus_output
+2023-09-25T21:27:41.111162Z  INFO vector::topology::running: Running healthchecks.
+2023-09-25T21:27:41.111197Z DEBUG vector::topology::running: Connecting changed/added component(s).
+2023-09-25T21:27:41.111226Z DEBUG vector::topology::running: Configuring outputs for source. component=raw_container_logs
+2023-09-25T21:27:41.111236Z  INFO vector::topology::builder: Healthcheck passed.
+2023-09-25T21:27:41.111244Z DEBUG vector::topology::running: Configuring output for component. component=raw_container_logs output_id=None
+2023-09-25T21:27:41.111252Z  INFO vector::topology::builder: Healthcheck passed.
+2023-09-25T21:27:41.111255Z DEBUG vector::topology::running: Configuring outputs for source. component=internal_metrics
+2023-09-25T21:27:41.111267Z DEBUG vector::topology::running: Configuring output for component. component=internal_metrics output_id=None
+2023-09-25T21:27:41.111277Z DEBUG vector::topology::running: Configuring outputs for transform. component=container_logs
+2023-09-25T21:27:41.111287Z DEBUG vector::topology::running: Configuring output for component. component=container_logs output_id=None
+2023-09-25T21:27:41.111296Z DEBUG vector::topology::running: Configuring outputs for transform. component=route_container_logs
+2023-09-25T21:27:41.111310Z DEBUG vector::topology::running: Configuring output for component. component=route_container_logs output_id=Some("_unmatched")
+2023-09-25T21:27:41.111321Z DEBUG vector::topology::running: Configuring output for component. component=route_container_logs output_id=Some("app")
+2023-09-25T21:27:41.111331Z DEBUG vector::topology::running: Configuring outputs for transform. component=application
+2023-09-25T21:27:41.111341Z DEBUG vector::topology::running: Configuring output for component. component=application output_id=None
+2023-09-25T21:27:41.111352Z DEBUG vector::topology::running: Configuring outputs for transform. component=http_normalize_http
+2023-09-25T21:27:41.111362Z DEBUG vector::topology::running: Configuring output for component. component=http_normalize_http output_id=None
+2023-09-25T21:27:41.111372Z DEBUG vector::topology::running: Configuring outputs for transform. component=http_otel
+2023-09-25T21:27:41.111381Z DEBUG vector::topology::running: Configuring output for component. component=http_otel output_id=None
+2023-09-25T21:27:41.111393Z DEBUG vector::topology::running: Configuring outputs for transform. component=add_nodename_to_metric
+2023-09-25T21:27:41.111403Z DEBUG vector::topology::running: Configuring output for component. component=add_nodename_to_metric output_id=None
+2023-09-25T21:27:41.111413Z DEBUG vector::topology::running: Configuring outputs for transform. component=forward_pipeline_user_defined
+2023-09-25T21:27:41.111423Z DEBUG vector::topology::running: Configuring output for component. component=forward_pipeline_user_defined output_id=None
+2023-09-25T21:27:41.111433Z DEBUG vector::topology::running: Configuring outputs for transform. component=http_dedot
+2023-09-25T21:27:41.111443Z DEBUG vector::topology::running: Configuring output for component. component=http_dedot output_id=None
+2023-09-25T21:27:41.111454Z DEBUG vector::topology::running: Connecting inputs for transform. component=container_logs
+2023-09-25T21:27:41.111475Z DEBUG vector::topology::running: Adding component input to fanout. component=container_logs fanout_id=raw_container_logs
+2023-09-25T21:27:41.111495Z DEBUG vector::topology::running: Connecting inputs for transform. component=route_container_logs
+2023-09-25T21:27:41.111508Z DEBUG vector::topology::running: Adding component input to fanout. component=route_container_logs fanout_id=container_logs
+2023-09-25T21:27:41.111518Z DEBUG vector::topology::running: Connecting inputs for transform. component=application
+2023-09-25T21:27:41.111532Z DEBUG vector::topology::running: Adding component input to fanout. component=application fanout_id=route_container_logs.app
+2023-09-25T21:27:41.111544Z DEBUG vector::topology::running: Connecting inputs for transform. component=http_normalize_http
+2023-09-25T21:27:41.111556Z DEBUG vector::topology::running: Adding component input to fanout. component=http_normalize_http fanout_id=http_otel
+2023-09-25T21:27:41.111568Z DEBUG vector::topology::running: Connecting inputs for transform. component=http_otel
+2023-09-25T21:27:41.111581Z DEBUG vector::topology::running: Adding component input to fanout. component=http_otel fanout_id=forward_pipeline_user_defined
+2023-09-25T21:27:41.111592Z DEBUG vector::topology::running: Connecting inputs for transform. component=add_nodename_to_metric
+2023-09-25T21:27:41.111604Z DEBUG vector::topology::running: Adding component input to fanout. component=add_nodename_to_metric fanout_id=internal_metrics
+2023-09-25T21:27:41.111615Z DEBUG vector::topology::running: Connecting inputs for transform. component=forward_pipeline_user_defined
+2023-09-25T21:27:41.111626Z DEBUG vector::topology::running: Adding component input to fanout. component=forward_pipeline_user_defined fanout_id=application
+2023-09-25T21:27:41.111637Z DEBUG vector::topology::running: Connecting inputs for transform. component=http_dedot
+2023-09-25T21:27:41.111648Z DEBUG vector::topology::running: Adding component input to fanout. component=http_dedot fanout_id=http_normalize_http
+2023-09-25T21:27:41.111661Z DEBUG vector::topology::running: Connecting inputs for sink. component=prometheus_output
+2023-09-25T21:27:41.111674Z DEBUG vector::topology::running: Adding component input to fanout. component=prometheus_output fanout_id=add_nodename_to_metric
+2023-09-25T21:27:41.111688Z DEBUG vector::topology::running: Connecting inputs for sink. component=http
+2023-09-25T21:27:41.111702Z DEBUG vector::topology::running: Adding component input to fanout. component=http fanout_id=http_dedot
+2023-09-25T21:27:41.111734Z DEBUG vector::topology::running: Spawning new source. key=raw_container_logs
+2023-09-25T21:27:41.111774Z DEBUG vector::topology::running: Spawning new source. key=internal_metrics
+2023-09-25T21:27:41.111800Z DEBUG vector::topology::running: Spawning new transform. key=container_logs
+2023-09-25T21:27:41.111821Z DEBUG vector::topology::running: Spawning new transform. key=route_container_logs
+2023-09-25T21:27:41.111821Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}: vector::topology::builder: Source starting.
+2023-09-25T21:27:41.111821Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}: vector::topology::builder: Source pump supervisor starting.
+2023-09-25T21:27:41.111844Z DEBUG vector::topology::running: Spawning new transform. key=application
+2023-09-25T21:27:41.111869Z DEBUG vector::topology::running: Spawning new transform. key=http_normalize_http
+2023-09-25T21:27:41.111896Z DEBUG vector::topology::running: Spawning new transform. key=http_otel
+2023-09-25T21:27:41.111917Z DEBUG vector::topology::running: Spawning new transform. key=add_nodename_to_metric
+2023-09-25T21:27:41.111916Z DEBUG source{component_kind="source" component_id=internal_metrics component_type=internal_metrics component_name=internal_metrics}: vector::topology::builder: Source starting.
+2023-09-25T21:27:41.111938Z DEBUG vector::topology::running: Spawning new transform. key=forward_pipeline_user_defined
+2023-09-25T21:27:41.111935Z DEBUG source{component_kind="source" component_id=internal_metrics component_type=internal_metrics component_name=internal_metrics}: vector::topology::builder: Source pump supervisor starting.
+2023-09-25T21:27:41.111961Z DEBUG vector::topology::running: Spawning new transform. key=http_dedot
+2023-09-25T21:27:41.111971Z DEBUG source{component_kind="source" component_id=internal_metrics component_type=internal_metrics component_name=internal_metrics}: vector::topology::builder: Source pump starting.
+2023-09-25T21:27:41.111975Z DEBUG transform{component_kind="transform" component_id=container_logs component_type=remap component_name=container_logs}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.111992Z DEBUG transform{component_kind="transform" component_id=route_container_logs component_type=route component_name=route_container_logs}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112013Z DEBUG transform{component_kind="transform" component_id=application component_type=remap component_name=application}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112019Z DEBUG transform{component_kind="transform" component_id=http_normalize_http component_type=remap component_name=http_normalize_http}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112022Z DEBUG transform{component_kind="transform" component_id=http_otel component_type=remap component_name=http_otel}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112027Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112034Z DEBUG transform{component_kind="transform" component_id=forward_pipeline_user_defined component_type=remap component_name=forward_pipeline_user_defined}: vector::topology::builder: Synchronous transform starting.
+2023-09-25T21:27:41.112038Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::topology::builder: Task transform starting.
+2023-09-25T21:27:41.112046Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::topology::builder: Sink starting.
+2023-09-25T21:27:41.112056Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.9999559354801553
+2023-09-25T21:27:41.112076Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::topology::builder: Sink starting.
+2023-09-25T21:27:41.112261Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.112259Z  INFO vector: Vector has started. debug="false" version="0.28.1" arch="x86_64" revision=""
+2023-09-25T21:27:41.112331Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.112337Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/pods?&fieldSelector=spec.nodeName%3Dip-10-0-1-4.ec2.internal&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.112375Z  INFO vector::app: API is disabled, enable by setting `api.enabled` to `true` and use commands like `vector top`.
+2023-09-25T21:27:41.112375Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/nodes?&fieldSelector=metadata.name%3Dip-10-0-1-4.ec2.internal otel.name="list" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.112430Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/nodes?&fieldSelector=metadata.name%3Dip-10-0-1-4.ec2.internal otel.name="list" otel.kind="client"}: hyper::client::connect::http: connecting to 172.30.0.1:443
+2023-09-25T21:27:41.112437Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/pods?&fieldSelector=spec.nodeName%3Dip-10-0-1-4.ec2.internal&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: hyper::client::connect::http: connecting to 172.30.0.1:443
+2023-09-25T21:27:41.111871Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}: vector::topology::builder: Source pump starting.
+2023-09-25T21:27:41.112549Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.112589Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/namespaces?&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.112665Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/namespaces?&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: hyper::client::connect::http: connecting to 172.30.0.1:443
+2023-09-25T21:27:41.112667Z  INFO source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::checkpointer: Attempting to read legacy checkpoint files.
+2023-09-25T21:27:41.113464Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.012410016340590913
+2023-09-25T21:27:41.114703Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/nodes?&fieldSelector=metadata.name%3Dip-10-0-1-4.ec2.internal otel.name="list" otel.kind="client"}: hyper::client::connect::http: connected to 172.30.0.1:443
+2023-09-25T21:27:41.115073Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/namespaces?&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: hyper::client::connect::http: connected to 172.30.0.1:443
+2023-09-25T21:27:41.115333Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/pods?&fieldSelector=spec.nodeName%3Dip-10-0-1-4.ec2.internal&labelSelector=vector.dev%2Fexclude%21%3Dtrue otel.name="list" otel.kind="client"}: hyper::client::connect::http: connected to 172.30.0.1:443
+2023-09-25T21:27:41.123750Z DEBUG hyper::proto::h1::io: flushed 1566 bytes
+2023-09-25T21:27:41.124861Z DEBUG hyper::proto::h1::io: flushed 1610 bytes
+2023-09-25T21:27:41.126957Z DEBUG hyper::proto::h1::io: flushed 1561 bytes
+2023-09-25T21:27:41.129596Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.129615Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:41.129628Z DEBUG hyper::proto::h1::decode: incoming chunked header: 0x3BE4 (15332 bytes)
+2023-09-25T21:27:41.129779Z DEBUG hyper::proto::h1::conn: incoming body completed
+2023-09-25T21:27:41.129805Z DEBUG hyper::client::pool: pooling idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.130111Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.130159Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/nodes?&watch=true&resourceVersion=74332&timeoutSeconds=290&fieldSelector=metadata.name%3Dip-10-0-1-4.ec2.internal&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.130177Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/nodes?&watch=true&resourceVersion=74332&timeoutSeconds=290&fieldSelector=metadata.name%3Dip-10-0-1-4.ec2.internal&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: hyper::client::pool: reuse idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.130279Z DEBUG hyper::proto::h1::io: flushed 1643 bytes
+2023-09-25T21:27:41.130510Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector_core::tls::settings: Fetching system root certs.
+2023-09-25T21:27:41.130531Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.9999489704090062
+2023-09-25T21:27:41.130965Z  INFO vector::sinks::prometheus::exporter: Building HTTP server. address=[::]:24231
+2023-09-25T21:27:41.131896Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.131905Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:41.136103Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.136112Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:41.136121Z DEBUG hyper::proto::h1::decode: incoming chunked header: 0x20B94 (134036 bytes)
+2023-09-25T21:27:41.139538Z DEBUG hyper::proto::h1::conn: incoming body completed
+2023-09-25T21:27:41.139568Z DEBUG hyper::client::pool: pooling idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.141574Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.141585Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:41.141594Z DEBUG hyper::proto::h1::decode: incoming chunked header: 0x7CBBF (510911 bytes)
+2023-09-25T21:27:41.142065Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.142195Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/namespaces?&watch=true&resourceVersion=74332&timeoutSeconds=290&labelSelector=vector.dev%2Fexclude%21%3Dtrue&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.142215Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/namespaces?&watch=true&resourceVersion=74332&timeoutSeconds=290&labelSelector=vector.dev%2Fexclude%21%3Dtrue&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: hyper::client::pool: reuse idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.142279Z DEBUG hyper::proto::h1::io: flushed 1638 bytes
+2023-09-25T21:27:41.145682Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.145694Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:41.147326Z DEBUG hyper::proto::h1::conn: incoming body completed
+2023-09-25T21:27:41.147353Z DEBUG hyper::client::pool: pooling idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.159820Z DEBUG tower::buffer::worker: service.ready=true processing request
+2023-09-25T21:27:41.159857Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/pods?&watch=true&resourceVersion=74332&timeoutSeconds=290&fieldSelector=spec.nodeName%3Dip-10-0-1-4.ec2.internal&labelSelector=vector.dev%2Fexclude%21%3Dtrue&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: kube_client::client::builder: requesting
+2023-09-25T21:27:41.159869Z DEBUG HTTP{http.method=GET http.url=https://172.30.0.1/api/v1/pods?&watch=true&resourceVersion=74332&timeoutSeconds=290&fieldSelector=spec.nodeName%3Dip-10-0-1-4.ec2.internal&labelSelector=vector.dev%2Fexclude%21%3Dtrue&allowWatchBookmarks=true otel.name="watch" otel.kind="client"}: hyper::client::pool: reuse idle connection for ("https", 172.30.0.1)
+2023-09-25T21:27:41.159930Z DEBUG hyper::proto::h1::io: flushed 1687 bytes
+2023-09-25T21:27:41.162611Z DEBUG hyper::proto::h1::io: parsed 7 headers
+2023-09-25T21:27:41.162623Z DEBUG hyper::proto::h1::conn: incoming body is chunked encoding
+2023-09-25T21:27:45.963333Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.09999565588216035
+2023-09-25T21:27:46.113336Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.041602570599206246
+2023-09-25T21:27:46.113467Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.10040986796823564
+2023-09-25T21:27:46.113476Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.0012410340339821355
+2023-09-25T21:27:50.963311Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00999962480847653
+2023-09-25T21:27:51.113455Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0045492957452989745
+2023-09-25T21:27:51.113591Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00012414156252207425
+2023-09-25T21:27:51.113598Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.010459370475163701
+2023-09-25T21:27:55.963863Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.0010000254739059224
+2023-09-25T21:27:56.113079Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000012460961093510128
+2023-09-25T21:27:56.113120Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0014504016332021407
+2023-09-25T21:27:56.113234Z DEBUG vector::internal_events::file::source: Files checkpointed. count=0 duration_ms=0
+2023-09-25T21:27:57.113120Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0008870810086172995
+2023-09-25T21:27:57.511373Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::file_server: event_throughput=0.000/sec bytes_throughput=0.000/sec ratios={"discovery": 1.6525929e-8, "other": 1.3137381e-5, "sending": 9.448501e-6, "sleeping": 0.9999774}
+2023-09-25T21:27:57.512623Z  INFO source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: vector::internal_events::file::source: Found new file to watch. file=/var/log/pods/test-qudehrhn_functional_3dbbc42b-dd8d-4000-8dee-46de14deabbf/collector/0.log
+2023-09-25T21:27:57.512902Z DEBUG transform{component_kind="transform" component_id=container_logs component_type=remap component_name=container_logs}: vector::utilization: utilization=0.011060803879950676
+2023-09-25T21:27:57.513266Z DEBUG transform{component_kind="transform" component_id=route_container_logs component_type=route component_name=route_container_logs}: vector::utilization: utilization=0.005394444002254195
+2023-09-25T21:27:57.513499Z DEBUG transform{component_kind="transform" component_id=application component_type=remap component_name=application}: vector::utilization: utilization=0.012389177981226629
+2023-09-25T21:27:57.513694Z DEBUG transform{component_kind="transform" component_id=forward_pipeline_user_defined component_type=remap component_name=forward_pipeline_user_defined}: vector::utilization: utilization=0.010595261805273926
+2023-09-25T21:27:57.513755Z DEBUG transform{component_kind="transform" component_id=http_otel component_type=remap component_name=http_otel}: vector::utilization: utilization=0.005853804206876756
+2023-09-25T21:27:57.513965Z DEBUG transform{component_kind="transform" component_id=http_normalize_http component_type=remap component_name=http_normalize_http}: vector::utilization: utilization=0.007856966547376443
+2023-09-25T21:27:58.515551Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: vector::internal_events::http_client: Sending HTTP request. uri=http://localhost:8090/v1/logs method=POST version=HTTP/1.1 headers={"content-type": "application/json", "k1": "v1", "accept-encoding": "gzip", "user-agent": "Vector/0.28.1 (x86_64-unknown-linux-gnu)"} body=[1558 bytes]
+2023-09-25T21:27:58.515628Z DEBUG hyper::client::connect::dns: resolving host="localhost"
+2023-09-25T21:27:58.515927Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: hyper::client::connect::http: connecting to [::1]:8090
+2023-09-25T21:27:58.516036Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: hyper::client::connect::http: connecting to 127.0.0.1:8090
+2023-09-25T21:27:58.516125Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: hyper::client::connect::http: connected to 127.0.0.1:8090
+2023-09-25T21:27:58.516290Z DEBUG hyper::proto::h1::io: flushed 1745 bytes
+2023-09-25T21:27:58.516719Z DEBUG hyper::proto::h1::io: parsed 3 headers
+2023-09-25T21:27:58.516730Z DEBUG hyper::proto::h1::conn: incoming body is content-length (194 bytes)
+2023-09-25T21:27:58.516746Z DEBUG hyper::proto::h1::conn: incoming body completed
+2023-09-25T21:27:58.516766Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: hyper::client::pool: pooling idle connection for ("http", localhost:8090)
+2023-09-25T21:27:58.516785Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}:http: vector::internal_events::http_client: HTTP response. status=400 Bad Request version=HTTP/1.1 headers={"content-type": "application/json", "date": "Mon, 25 Sep 2023 21:27:58 GMT", "content-length": "194"} body=[194 bytes]
+2023-09-25T21:27:58.516856Z ERROR sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}: vector::sinks::util::retries: Not retriable; dropping the request. reason="response status: 400 Bad Request" internal_log_rate_limit=true
+2023-09-25T21:27:58.516877Z ERROR sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}: vector::sinks::util::sink: Response failed. response=Response { status: 400, version: HTTP/1.1, headers: {"content-type": "application/json", "date": "Mon, 25 Sep 2023 21:27:58 GMT", "content-length": "194"}, body: b"{\"code\":3,\"message\":\"ReadObjectCB: expect { or n, but found [, error found in #1 byte of ...|[{\\\"kubernet|..., bigger context ...|[{\\\"kubernetes\\\":{\\\"namespace_name\\\":\\\"test-qudehrhn\\\"},\\\"|...\"}" }
+2023-09-25T21:27:58.516899Z ERROR sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}: vector_common::internal_event::service: Service call failed. No retries or retries exhausted. error="Response failed." request_id=0 error_type="request_failed" stage="sending" internal_log_rate_limit=true
+2023-09-25T21:27:58.516916Z ERROR sink{component_kind="sink" component_id=http component_type=http component_name=http}:request{request_id=0}: vector_common::internal_event::component_events_dropped: Events dropped intentional=false count=1 reason="Service call failed. No retries or retries exhausted." internal_log_rate_limit=true
+2023-09-25T21:28:00.963682Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00013384430151760972
+2023-09-25T21:28:01.114011Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0007564402120464657
+2023-09-25T21:28:01.114029Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000017381822424642713
+2023-09-25T21:28:02.113543Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0004847206671893048
+2023-09-25T21:28:05.963098Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.000013445457290203662
+2023-09-25T21:28:06.113163Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0004957810436744708
+2023-09-25T21:28:06.113227Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000001759965715689505
+2023-09-25T21:28:08.112936Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0004788927685506213
+2023-09-25T21:28:10.963966Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.0000014066349528826708
+2023-09-25T21:28:11.113280Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000023701601186951974
+2023-09-25T21:28:11.113297Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005875996564080266
+2023-09-25T21:28:11.114623Z DEBUG vector::internal_events::file::source: Files checkpointed. count=1 duration_ms=0
+2023-09-25T21:28:13.113240Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0005205871502066639
+2023-09-25T21:28:13.915270Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::file_server: event_throughput=0.000/sec bytes_throughput=3.000/sec ratios={"discovery": 7.6464625e-5, "other": 1.4932473e-5, "reading": 5.951653e-6, "sending": 9.841411e-6, "sleeping": 0.9998929}
+2023-09-25T21:28:15.963318Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.0000002022314730043264
+2023-09-25T21:28:16.113528Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.0000000706792674440051
+2023-09-25T21:28:16.113542Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006163014480667521
+2023-09-25T21:28:19.113132Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0004683624094584915
+2023-09-25T21:28:20.963110Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000008034565517267269
+2023-09-25T21:28:21.113464Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005843344376278608
+2023-09-25T21:28:21.113464Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000003100822239029723
+2023-09-25T21:28:25.113236Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.00047205847290766845
+2023-09-25T21:28:25.963290Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000007085228963968875
+2023-09-25T21:28:26.113723Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000054578173021066245
+2023-09-25T21:28:26.113736Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005803150897363292
+2023-09-25T21:28:26.115935Z DEBUG vector::internal_events::file::source: Files checkpointed. count=1 duration_ms=0
+2023-09-25T21:28:30.308314Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::file_server: event_throughput=0.000/sec bytes_throughput=0.000/sec ratios={"discovery": 6.411561e-5, "other": 7.914965e-6, "reading": 9.604711e-7, "sending": 5.4075526e-6, "sleeping": 0.99992156}
+2023-09-25T21:28:30.964033Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006467667697450993
+2023-09-25T21:28:31.113232Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0005176670311355616
+2023-09-25T21:28:31.113360Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006422623479052315
+2023-09-25T21:28:31.113366Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000053701241157893797
+2023-09-25T21:28:35.963218Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006605737946245781
+2023-09-25T21:28:36.113235Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000004749125140186602
+2023-09-25T21:28:36.113235Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006078343984437206
+2023-09-25T21:28:37.113343Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0004909236975836586
+2023-09-25T21:28:40.963302Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006402478376426483
+2023-09-25T21:28:41.113572Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000002760755568857581
+2023-09-25T21:28:41.113570Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006011720548317025
+2023-09-25T21:28:41.116735Z DEBUG vector::internal_events::file::source: Files checkpointed. count=1 duration_ms=0
+2023-09-25T21:28:43.113819Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0005037624789406861
+2023-09-25T21:28:45.963307Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006742241887687727
+2023-09-25T21:28:46.113466Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006300331725225174
+2023-09-25T21:28:46.113461Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000005028187360948522
+2023-09-25T21:28:46.702103Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::file_server: event_throughput=0.000/sec bytes_throughput=0.000/sec ratios={"discovery": 5.915736e-5, "other": 9.151606e-6, "reading": 5.537482e-7, "sending": 5.231328e-6, "sleeping": 0.9999259}
+2023-09-25T21:28:49.113202Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.00047364719438438587
+2023-09-25T21:28:50.963973Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006721417185118921
+2023-09-25T21:28:51.113324Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000054349515782340774
+2023-09-25T21:28:51.113321Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005640843917753315
+2023-09-25T21:28:55.112899Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0004808853631875909
+2023-09-25T21:28:55.963995Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006720116729315234
+2023-09-25T21:28:56.113253Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.00000005313565426601478
+2023-09-25T21:28:56.113257Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005504258968830532
+2023-09-25T21:28:56.117457Z DEBUG vector::internal_events::file::source: Files checkpointed. count=1 duration_ms=0
+2023-09-25T21:29:00.963963Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000006738048955413197
+2023-09-25T21:29:01.113204Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.0005427716844625521
+2023-09-25T21:29:01.113332Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0006911915371066743
+2023-09-25T21:29:01.113333Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000036453021939941965
+2023-09-25T21:29:03.095918Z DEBUG source{component_kind="source" component_id=raw_container_logs component_type=kubernetes_logs component_name=raw_container_logs}:file_server: file_source::file_server: event_throughput=0.000/sec bytes_throughput=0.000/sec ratios={"discovery": 5.9006816e-5, "other": 8.95871e-6, "reading": 6.704377e-7, "sending": 5.9242643e-6, "sleeping": 0.99992543}
+2023-09-25T21:29:05.963302Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000007208669025367054
+2023-09-25T21:29:06.113156Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000053327120853047275
+2023-09-25T21:29:06.113169Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.000488293475968943
+2023-09-25T21:29:07.113738Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.00043319327773706074
+2023-09-25T21:29:10.963613Z DEBUG transform{component_kind="transform" component_id=http_dedot component_type=lua component_name=http_dedot}: vector::utilization: utilization=0.00000007326457686895445
+2023-09-25T21:29:11.113860Z DEBUG sink{component_kind="sink" component_id=prometheus_output component_type=prometheus_exporter component_name=prometheus_output}: vector::utilization: utilization=0.0005564943714560994
+2023-09-25T21:29:11.113862Z DEBUG sink{component_kind="sink" component_id=http component_type=http component_name=http}: vector::utilization: utilization=0.000000023330150025258624
+2023-09-25T21:29:11.119044Z DEBUG vector::internal_events::file::source: Files checkpointed. count=1 duration_ms=0
+2023-09-25T21:29:13.113166Z DEBUG transform{component_kind="transform" component_id=add_nodename_to_metric component_type=remap component_name=add_nodename_to_metric}: vector::utilization: utilization=0.00040998897021880045
