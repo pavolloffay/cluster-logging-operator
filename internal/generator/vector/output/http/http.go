@@ -47,6 +47,8 @@ type = "http"
 inputs = {{.Inputs}}
 uri = "{{.URI}}"
 method = "{{.Method}}"
+payload_prefix = '{"resourceLogs":'
+payload_suffix = '}'
 {{end}}
 `
 }
@@ -64,6 +66,21 @@ func (h HttpEncoding) Template() string {
 	return `{{define "` + h.Name() + `" -}}
 [sinks.{{.ComponentID}}.encoding]
 codec = {{.Codec}}
+{{end}}`
+}
+
+type Payload struct {
+	ComponentID string
+}
+
+func (p Payload) Name() string {
+	return "vectorHttpPayload"
+}
+
+func (p Payload) Template() string {
+	return `{{define "` + p.Name() + `" -}}
+[sinks.{{.ComponentID}}.payload_prefix]
+"resourceSpans"
 {{end}}`
 }
 
@@ -127,6 +144,7 @@ func Conf(o logging.OutputSpec, inputs []string, secret *corev1.Secret, op Optio
 			Output(o, []string{dedottedID}, secret, op),
 			Encoding(o),
 			Request(o),
+			//PayloadPrefix(o),
 		},
 		TLSConf(o, secret, op),
 		BasicAuth(o, secret),
@@ -206,6 +224,12 @@ func Encoding(o logging.OutputSpec) Element {
 	return HttpEncoding{
 		ComponentID: strings.ToLower(vectorhelpers.Replacer.Replace(o.Name)),
 		Codec:       httpEncodingJson,
+	}
+}
+
+func PayloadPrefix(o logging.OutputSpec) Element {
+	return Payload{
+		ComponentID: strings.ToLower(vectorhelpers.Replacer.Replace(o.Name)),
 	}
 }
 

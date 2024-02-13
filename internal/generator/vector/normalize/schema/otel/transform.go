@@ -52,6 +52,22 @@ if .log_type == "application" {
 	.resources.k8s.namespace.name = .kubernetes.namespace_labels."kubernetes.io/metadata.name"
 	.resources.k8s.namespace.labels = del(.kubernetes.namespace_labels)
 	.resources.attributes.log_type = del(.log_type)
+
+	.body.stringValue = .message
+	# .scopeLogs.logRecords = [.]
+	logRecords.logRecords = [.]
+	.scopeLogs = [logRecords]
+
+	del(.message)
+	del(.severityNumber)
+	del(.severityText)
+	del(.timeUnixNano)
+
+	del(.resources)
+	del(.kubernetes)
+
+	# If this is deleted no data is sent
+	# del(.openshift)
 }
 `),
 	}

@@ -9,22 +9,23 @@ import (
 const (
 	OTELReceiverConf = `
 exporters:
-  logging:
-    loglevel: debug
-  file:
-    path: /tmp/app-logs
+  debug:
+    verbosity: detailed
 receivers:
   otlp:
     protocols:
       http:
-        endpoint: localhost:8090
+        endpoint: 0.0.0.0:8090
 service:
+  telemetry:
+    logs: 
+      level: debug
   pipelines:
     logs:
       receivers: [otlp]
-      exporters: [file]
+      exporters: [debug]
 `
-	OTELImage = "quay.io/openshift-logging/opentelemetry-collector:0.85.0"
+	OTELImage = "ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector:0.93.0"
 )
 
 func (f *CollectorFunctionalFramework) AddOTELCollector(b *runtime.PodBuilder, outputName string) error {
@@ -42,8 +43,18 @@ func (f *CollectorFunctionalFramework) AddOTELCollector(b *runtime.PodBuilder, o
 	log.V(2).Info("Adding container", "name", name, "image", OTELImage)
 	b.AddContainer(name, OTELImage).
 		AddVolumeMount(config.Name, "/etc/functional", "", false).
-		WithCmd([]string{"otelcol", "--config", "/etc/functional/config.yaml"}).
+		WithCmdArgs([]string{"--config", "/etc/functional/config.yaml"}).
 		End().
 		AddConfigMapVolume(config.Name, config.Name)
+	return nil
+}
+
+func (f *CollectorFunctionalFramework) AddEcho(b *runtime.PodBuilder, outputName string) error {
+	log.V(3).Info("Adding echo server", "name", outputName)
+
+	name := strings.ToLower(outputName)
+	b.AddContainer(name, "mendhak/http-https-echo:31").
+		AddEnvVar("HTTP_PORT", "8090").
+		End()
 	return nil
 }

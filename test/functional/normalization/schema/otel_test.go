@@ -33,7 +33,7 @@ var _ = Describe("[Functional][Normalization][Schema] OTEL", func() {
 		framework.Cleanup()
 	})
 
-	It("should normalize application logs to OTEL format for HTTP sink", func() {
+	FIt("should normalize application logs to OTEL format for HTTP sink", func() {
 		functional.NewClusterLogForwarderBuilder(framework.Forwarder).
 			FromInput(loggingv1.InputNameApplication).
 			ToOutputWithVisitor(func(output *loggingv1.OutputSpec) {
@@ -53,6 +53,7 @@ var _ = Describe("[Functional][Normalization][Schema] OTEL", func() {
 		//ToHttpOutputWithSchema(constants.OTELSchema)
 
 		ExpectOK(framework.DeployWithVisitor(func(b *runtime.PodBuilder) error {
+			//return framework.AddEcho(b, loggingv1.OutputTypeHttp)
 			return framework.AddOTELCollector(b, loggingv1.OutputTypeHttp)
 		}))
 
